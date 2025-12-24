@@ -204,9 +204,19 @@ export function useAudioFeedback() {
     }, 500);
   }, [speak, playSound]);
 
-  const announceWelcome = useCallback((name: string, balance: number, activityCount: number) => {
-    speak(`Hey ${name}! Welcome to your adventure bucks page! You have ${balance} adventure bucks to spend on ${activityCount} awesome activities with Uncle Mark.`);
-  }, [speak]);
+  const announceWelcome = useCallback((name: string, balance: number, activityCount: number, personalMessage?: string) => {
+    const messages: string[] = [
+      `Hey ${name}! Welcome to your adventure bucks page!`,
+    ];
+
+    if (personalMessage) {
+      messages.push(personalMessage);
+    }
+
+    messages.push(`You have ${balance} adventure bucks to spend on ${activityCount} awesome activities with Uncle Mark.`);
+
+    speakSequence(messages);
+  }, [speakSequence]);
 
   const announceAllActivities = useCallback((activities: Activity[], canAffordCheck: (cost: number) => boolean) => {
     if (activities.length === 0) {

@@ -77,7 +77,12 @@ export default function AdventurePage() {
   // Announce welcome and activities for accessible users
   useEffect(() => {
     if (isAccessible && pageData && activities.length > 0 && audioEnabled) {
-      audio.announceWelcome(pageData.person.name, pageData.person.balance, activities.length);
+      audio.announceWelcome(
+        pageData.person.name,
+        pageData.person.balance,
+        activities.length,
+        pageData.theme.personalMessage
+      );
       // Announce all activities after the welcome (with a small delay)
       setTimeout(() => {
         audio.announceAllActivities(activities, (cost) => pageData.person.balance >= cost);
