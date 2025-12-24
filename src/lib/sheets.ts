@@ -60,7 +60,7 @@ export async function getAllActivities(): Promise<Activity[]> {
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
-    range: "Activities!A2:E",
+    range: "Activities!A2:F", // Now includes column F for exclude
   });
 
   const rows = response.data.values;
@@ -72,7 +72,19 @@ export async function getAllActivities(): Promise<Activity[]> {
     cost: parseInt(row[2], 10),
     description: row[3],
     icon: row[4] || "🎯",
+    exclude: row[5] ? row[5].split(",").map((name: string) => name.trim().toLowerCase()) : [],
   }));
+}
+
+export async function getActivitiesForPerson(personName: string): Promise<Activity[]> {
+  const allActivities = await getAllActivities();
+  const nameLower = personName.toLowerCase();
+
+  // Filter out activities where this person is in the exclude list
+  return allActivities.filter((activity) => {
+    if (!activity.exclude || activity.exclude.length === 0) return true;
+    return !activity.exclude.includes(nameLower);
+  });
 }
 
 export async function getRedemptionsByPerson(personId: string): Promise<Redemption[]> {

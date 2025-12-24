@@ -35,10 +35,8 @@ export default function AdventurePage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [personRes, activitiesRes] = await Promise.all([
-          fetch(`/api/person/${slug}`),
-          fetch("/api/activities"),
-        ]);
+        // First fetch person data
+        const personRes = await fetch(`/api/person/${slug}`);
 
         if (!personRes.ok) {
           if (personRes.status === 404) {
@@ -50,6 +48,9 @@ export default function AdventurePage() {
         }
 
         const personData = await personRes.json();
+
+        // Then fetch activities filtered for this person
+        const activitiesRes = await fetch(`/api/activities?person=${encodeURIComponent(personData.person.name)}`);
         const activitiesData = await activitiesRes.json();
 
         setPageData(personData);

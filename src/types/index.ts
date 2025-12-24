@@ -12,6 +12,7 @@ export interface Activity {
   cost: number;
   description: string;
   icon: string;
+  exclude?: string[]; // Names of people who should NOT see this activity
 }
 
 export interface Redemption {

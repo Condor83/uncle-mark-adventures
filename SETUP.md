@@ -22,17 +22,20 @@ Add these columns in Row 1, then paste the data below:
 ### Tab 2: "Activities"
 Add these columns in Row 1 (leave empty for now - add activities later):
 
-| id | name | cost | description | icon |
+| id | name | cost | description | icon | exclude |
+
+The **exclude** column is optional. Use it to hide activities from specific people (comma-separated names).
 
 Example activities you can add later:
-| 1 | Movie Night | 100 | Pick any movie, Uncle Mark brings snacks | 🎬 |
-| 2 | Ice Cream Trip | 50 | Any flavor you want! | 🍦 |
-| 3 | Hiking Adventure | 200 | Pick a trail, we'll explore together | 🥾 |
-| 4 | Bowling | 150 | Strikes and spares at the lanes | 🎳 |
-| 5 | Arcade Day | 250 | Unlimited tokens! | 🕹️ |
-| 6 | Cooking Together | 150 | You choose what we make | 👨‍🍳 |
-| 7 | Mini Golf | 100 | 18 holes of fun | ⛳ |
-| 8 | Go Karts | 300 | Race day! | 🏎️ |
+| 1 | Movie Night | 100 | Pick any movie, Uncle Mark brings snacks | 🎬 | |
+| 2 | Ice Cream Trip | 50 | Any flavor you want! | 🍦 | |
+| 3 | Hiking Adventure | 200 | Pick a trail, we'll explore together | 🥾 | |
+| 4 | Bowling | 150 | Strikes and spares at the lanes | 🎳 | |
+| 5 | Arcade Day | 250 | Unlimited tokens! | 🕹️ | |
+| 6 | Cooking Together | 150 | You choose what we make | 👨‍🍳 | |
+| 7 | Mini Golf | 100 | 18 holes of fun | ⛳ | |
+| 8 | Go Karts | 300 | Race day! | 🏎️ | Colton |
+| 9 | Driving Lesson | 500 | Behind the wheel with Uncle Mark | 🚗 | Colton, Abby, Jake, Ezra |
 
 ### Tab 3: "Redemptions"
 Add these columns in Row 1 (this will auto-populate when kids redeem):
