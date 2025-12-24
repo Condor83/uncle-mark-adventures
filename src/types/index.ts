@@ -34,5 +34,9 @@ export interface Theme {
   welcomeMessage: string;
   icon: string;
   fontFamily?: string;
+  displayFont?: string;
   isAccessible?: boolean;
+  themeId: string;
+  glowColor: string;
+  patternOpacity: number;
 }

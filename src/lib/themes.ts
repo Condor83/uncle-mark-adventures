@@ -3,97 +3,129 @@ import { Theme } from "@/types";
 export const themes: Record<string, Theme> = {
   aviation: {
     name: "Riley",
-    primary: "#0ea5e9", // sky blue
-    secondary: "#64748b", // slate/metal gray
-    accent: "#f97316", // orange for highlights
-    background: "#0c1929",
-    backgroundGradient: "linear-gradient(135deg, #0c1929 0%, #1e3a5f 50%, #0c1929 100%)",
-    textColor: "#f8fafc",
-    cardBg: "rgba(30, 58, 95, 0.8)",
-    welcomeMessage: "Ready for takeoff, Riley?",
+    themeId: "aviation",
+    primary: "#38bdf8", // bright sky blue
+    secondary: "#475569", // slate/metal gray
+    accent: "#fb923c", // warm orange
+    background: "#0a1628",
+    backgroundGradient: "radial-gradient(ellipse at top, #1e3a5f 0%, #0a1628 50%, #030712 100%)",
+    textColor: "#e0f2fe",
+    cardBg: "rgba(15, 35, 60, 0.85)",
+    welcomeMessage: "Ready for takeoff, Captain Riley?",
     icon: "✈️",
+    fontFamily: "'Exo 2', sans-serif",
+    displayFont: "'Orbitron', sans-serif",
+    glowColor: "rgba(56, 189, 248, 0.4)",
+    patternOpacity: 0.15,
   },
   theater: {
     name: "Ella",
-    primary: "#d97706", // warm gold
-    secondary: "#7c2d12", // deep burgundy
-    accent: "#fbbf24", // bright gold
-    background: "#1c1412",
-    backgroundGradient: "linear-gradient(135deg, #1c1412 0%, #44241c 50%, #1c1412 100%)",
+    themeId: "theater",
+    primary: "#fbbf24", // bright gold
+    secondary: "#991b1b", // deep crimson
+    accent: "#fef3c7", // cream
+    background: "#1a0a0a",
+    backgroundGradient: "radial-gradient(ellipse at center top, #3d1515 0%, #1a0a0a 60%, #0d0505 100%)",
     textColor: "#fef3c7",
-    cardBg: "rgba(68, 36, 28, 0.8)",
-    welcomeMessage: "The world awaits, Ella!",
+    cardBg: "rgba(61, 21, 21, 0.8)",
+    welcomeMessage: "The spotlight awaits, Ella!",
     icon: "🎭",
+    fontFamily: "'Cormorant Garamond', serif",
+    displayFont: "'Playfair Display', serif",
+    glowColor: "rgba(251, 191, 36, 0.5)",
+    patternOpacity: 0.12,
   },
   adventure: {
     name: "Abby",
-    primary: "#16a34a", // forest green
-    secondary: "#854d0e", // earth brown
-    accent: "#84cc16", // lime for energy
-    background: "#14211a",
-    backgroundGradient: "linear-gradient(135deg, #14211a 0%, #1f3d2b 50%, #14211a 100%)",
-    textColor: "#ecfccb",
-    cardBg: "rgba(31, 61, 43, 0.8)",
-    welcomeMessage: "Adventure awaits, Abby!",
+    themeId: "adventure",
+    primary: "#4ade80", // vibrant green
+    secondary: "#a16207", // earth brown
+    accent: "#fde047", // sunshine yellow
+    background: "#0a1a10",
+    backgroundGradient: "linear-gradient(180deg, #1a3d25 0%, #0a1a10 40%, #050d08 100%)",
+    textColor: "#d9f99d",
+    cardBg: "rgba(20, 50, 30, 0.85)",
+    welcomeMessage: "The wild calls, Abby!",
     icon: "🏹",
+    fontFamily: "'Nunito', sans-serif",
+    displayFont: "'Bebas Neue', sans-serif",
+    glowColor: "rgba(74, 222, 128, 0.3)",
+    patternOpacity: 0.2,
   },
   science: {
     name: "Colton",
-    primary: "#3b82f6", // electric blue
-    secondary: "#6366f1", // indigo
+    themeId: "science",
+    primary: "#818cf8", // electric indigo
+    secondary: "#4f46e5", // deep indigo
     accent: "#22d3ee", // cyan
-    background: "#0f172a",
-    backgroundGradient: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)",
-    textColor: "#e0f2fe",
+    background: "#0a0a1a",
+    backgroundGradient: "radial-gradient(ellipse at bottom, #1e1b4b 0%, #0a0a1a 60%, #050510 100%)",
+    textColor: "#c7d2fe",
     cardBg: "rgba(30, 27, 75, 0.8)",
     welcomeMessage: "Let's experiment, Colton!",
     icon: "🔬",
+    fontFamily: "'Space Mono', monospace",
+    displayFont: "'Audiowide', sans-serif",
+    glowColor: "rgba(129, 140, 248, 0.4)",
+    patternOpacity: 0.25,
   },
   music: {
     name: "Claire",
-    primary: "#a855f7", // purple
-    secondary: "#6b21a8", // deep purple
-    accent: "#f472b6", // pink
-    background: "#1a0f24",
-    backgroundGradient: "linear-gradient(135deg, #1a0f24 0%, #3b1d54 50%, #1a0f24 100%)",
+    themeId: "music",
+    primary: "#c084fc", // vibrant purple
+    secondary: "#7e22ce", // deep purple
+    accent: "#f472b6", // hot pink
+    background: "#120a1a",
+    backgroundGradient: "linear-gradient(135deg, #2d1b4e 0%, #120a1a 50%, #0a0510 100%)",
     textColor: "#f5d0fe",
-    cardBg: "rgba(59, 29, 84, 0.8)",
-    welcomeMessage: "Let's ride, Claire!",
+    cardBg: "rgba(45, 27, 78, 0.8)",
+    welcomeMessage: "Let's rock, Claire!",
     icon: "🎸",
+    fontFamily: "'Poppins', sans-serif",
+    displayFont: "'Righteous', sans-serif",
+    glowColor: "rgba(192, 132, 252, 0.4)",
+    patternOpacity: 0.18,
   },
   sports: {
     name: "Jake",
-    primary: "#f97316", // orange
-    secondary: "#1f2937", // dark gray
-    accent: "#fbbf24", // gold
-    background: "#18120c",
-    backgroundGradient: "linear-gradient(135deg, #18120c 0%, #3d2610 50%, #18120c 100%)",
+    themeId: "sports",
+    primary: "#fb923c", // vibrant orange
+    secondary: "#1c1917", // almost black
+    accent: "#facc15", // golden yellow
+    background: "#0f0a05",
+    backgroundGradient: "radial-gradient(ellipse at top right, #3d2610 0%, #0f0a05 60%, #050302 100%)",
     textColor: "#fff7ed",
-    cardBg: "rgba(61, 38, 16, 0.8)",
+    cardBg: "rgba(60, 35, 15, 0.85)",
     welcomeMessage: "Game on, Jake!",
     icon: "🏀",
+    fontFamily: "'Barlow Condensed', sans-serif",
+    displayFont: "'Black Ops One', sans-serif",
+    glowColor: "rgba(251, 146, 60, 0.4)",
+    patternOpacity: 0.2,
   },
   accessible: {
     name: "Ezra",
+    themeId: "accessible",
     primary: "#fbbf24", // bright yellow
-    secondary: "#000000", // pure black
-    accent: "#ffffff", // pure white
+    secondary: "#000000",
+    accent: "#ffffff",
     background: "#000000",
-    backgroundGradient: "linear-gradient(180deg, #000000 0%, #1a1a1a 100%)",
+    backgroundGradient: "linear-gradient(180deg, #1a1a1a 0%, #000000 100%)",
     textColor: "#ffffff",
-    cardBg: "rgba(40, 40, 40, 0.95)",
+    cardBg: "rgba(30, 30, 30, 0.95)",
     welcomeMessage: "Hey Ezra! Your adventures are ready!",
     icon: "🎸",
     fontFamily: "system-ui, -apple-system, sans-serif",
+    displayFont: "system-ui, -apple-system, sans-serif",
     isAccessible: true,
+    glowColor: "rgba(251, 191, 36, 0.6)",
+    patternOpacity: 0.1,
   },
 };
 
 export function getThemeBySlug(slug: string): Theme | null {
-  // Extract the name from slug (e.g., "riley-x7k9m2" -> "riley")
   const name = slug.split("-")[0].toLowerCase();
 
-  // Map names to themes
   const nameToTheme: Record<string, string> = {
     riley: "aviation",
     ella: "theater",
