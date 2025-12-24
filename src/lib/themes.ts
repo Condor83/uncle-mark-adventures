@@ -3,6 +3,7 @@ import { Theme } from "@/types";
 export const themes: Record<string, Theme> = {
   aviation: {
     name: "Riley",
+    personalMessage: "Riley, I'm proud to be your uncle! It's fun watching you grow into adulthood and see your passions develop. Can't wait for more adventures together!",
     themeId: "aviation",
     primary: "#38bdf8", // bright sky blue
     secondary: "#475569", // slate/metal gray
@@ -20,6 +21,7 @@ export const themes: Record<string, Theme> = {
   },
   theater: {
     name: "Ella",
+    personalMessage: "Ella, your love for books, theater, and travel inspires everyone around you. You have such a beautiful creative spirit and I'm so proud of the young woman you're becoming. Here's to many more adventures!",
     themeId: "theater",
     primary: "#fbbf24", // bright gold
     secondary: "#991b1b", // deep crimson
@@ -37,6 +39,7 @@ export const themes: Record<string, Theme> = {
   },
   adventure: {
     name: "Abby",
+    personalMessage: "Abby, you have a special ability to make friends, love others and lead! I'm excited for your future and can't wait to see what you do. I look forward to 2026 with you!",
     themeId: "adventure",
     primary: "#4ade80", // vibrant green
     secondary: "#a16207", // earth brown
@@ -54,6 +57,7 @@ export const themes: Record<string, Theme> = {
   },
   science: {
     name: "Colton",
+    personalMessage: "Colton, your curiosity and love for science is amazing! Never stop asking questions and exploring how things work. The world needs more curious minds like yours. Let's discover something awesome together!",
     themeId: "science",
     primary: "#818cf8", // electric indigo
     secondary: "#4f46e5", // deep indigo
@@ -71,6 +75,7 @@ export const themes: Record<string, Theme> = {
   },
   music: {
     name: "Claire",
+    personalMessage: "Claire, your musical talent and love for mountain biking show what a well-rounded person you are! Whether you're playing the guitar or popping another tire, you bring so much energy to everything you do!",
     themeId: "music",
     primary: "#c084fc", // vibrant purple
     secondary: "#7e22ce", // deep purple
@@ -88,6 +93,7 @@ export const themes: Record<string, Theme> = {
   },
   sports: {
     name: "Jake",
+    personalMessage: "Jake, even though you are a warriors fan, I love that we share a passion for basketball together. You remind me of me when I was younger. Keep pursuing your passions!",
     themeId: "sports",
     primary: "#fb923c", // vibrant orange
     secondary: "#1c1917", // almost black
@@ -105,6 +111,7 @@ export const themes: Record<string, Theme> = {
   },
   accessible: {
     name: "Ezra",
+    personalMessage: "Ezra, you truly inspire me! You don't let anything hold you back and you face the world with courage. Excited for more adventures together!",
     themeId: "accessible",
     primary: "#fbbf24", // bright yellow
     secondary: "#000000",
@@ -124,6 +131,7 @@ export const themes: Record<string, Theme> = {
   // Couple themes
   parents: {
     name: "Mom & Dad",
+    personalMessage: "Mom and Dad, what a lucky guy I am to be born into this family! I love and cherish our time together always. Looking forward to more of it.",
     themeId: "parents",
     primary: "#dc2626", // warm red
     secondary: "#166534", // forest green
@@ -141,6 +149,7 @@ export const themes: Record<string, Theme> = {
   },
   scottmelissa: {
     name: "Scott & Melissa",
+    personalMessage: "Scott and Meliss, I'm glad you are back! Thanks for always being there for me. I'm excited for all that awaits us in the next year!",
     themeId: "scottmelissa",
     primary: "#0ea5e9", // ocean blue
     secondary: "#0369a1", // deep blue
@@ -149,7 +158,7 @@ export const themes: Record<string, Theme> = {
     backgroundGradient: "linear-gradient(180deg, #0c2940 0%, #030a10 60%, #010408 100%)",
     textColor: "#e0f2fe",
     cardBg: "rgba(12, 41, 64, 0.8)",
-    welcomeMessage: "Adventures await, Scott & Melissa!",
+    welcomeMessage: "Welcome home, Scott & Melissa!",
     icon: "⛵",
     fontFamily: "'Source Sans 3', sans-serif",
     displayFont: "'Josefin Sans', sans-serif",
@@ -158,6 +167,7 @@ export const themes: Record<string, Theme> = {
   },
   jennymatt: {
     name: "Jenny & Matt",
+    personalMessage: "Matt and Jen,Thank you for being such great examples to me! One day I hope to emulate the family you've created :)",
     themeId: "jennymatt",
     primary: "#a78bfa", // soft violet
     secondary: "#6d28d9", // deep purple
@@ -166,7 +176,7 @@ export const themes: Record<string, Theme> = {
     backgroundGradient: "radial-gradient(ellipse at bottom left, #1e1530 0%, #0d0a12 50%, #050308 100%)",
     textColor: "#ede9fe",
     cardBg: "rgba(30, 21, 48, 0.85)",
-    welcomeMessage: "Let's make memories, Jenny & Matt!",
+    welcomeMessage: "Merry Christmas, Jenny & Matt!",
     icon: "✨",
     fontFamily: "'Quicksand', sans-serif",
     displayFont: "'Italiana', serif",

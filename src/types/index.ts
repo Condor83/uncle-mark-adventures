@@ -41,6 +41,7 @@ export interface AdventureRequest {
 
 export interface Theme {
   name: string;
+  personalMessage?: string; // A nice paragraph about them
   primary: string;
   secondary: string;
   accent: string;

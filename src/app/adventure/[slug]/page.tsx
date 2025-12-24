@@ -298,6 +298,26 @@ export default function AdventurePage() {
             />
           </header>
 
+          {/* Personal Message */}
+          {theme.personalMessage && (
+            <section
+              className="animate-fade-in-up text-center"
+              style={{ animationDelay: "0.2s", opacity: 0, animationFillMode: "forwards" }}
+            >
+              <div
+                className="rounded-2xl p-6 glass"
+                style={{ backgroundColor: theme.cardBg }}
+              >
+                <p
+                  className={`leading-relaxed ${isAccessible ? "text-2xl" : "text-base md:text-lg"}`}
+                  style={{ fontFamily: theme.fontFamily }}
+                >
+                  {theme.personalMessage}
+                </p>
+              </div>
+            </section>
+          )}
+
           {/* Balance */}
           <BalanceDisplay balance={person.balance} theme={theme} isAccessible={isAccessible} />
 
