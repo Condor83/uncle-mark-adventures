@@ -11,7 +11,7 @@ export const themes: Record<string, Theme> = {
     backgroundGradient: "radial-gradient(ellipse at top, #1e3a5f 0%, #0a1628 50%, #030712 100%)",
     textColor: "#e0f2fe",
     cardBg: "rgba(15, 35, 60, 0.85)",
-    welcomeMessage: "Ready for takeoff, Captain Riley?",
+    welcomeMessage: "Ready for takeoff, Riley?",
     icon: "✈️",
     fontFamily: "'Exo 2', sans-serif",
     displayFont: "'Orbitron', sans-serif",
