@@ -3,10 +3,23 @@ import { Person, Activity, Redemption } from "@/types";
 
 // Initialize the Google Sheets API client
 function getSheets() {
+  // Handle private key - Vercel may store it with literal \n or actual newlines
+  let privateKey = process.env.GOOGLE_PRIVATE_KEY || "";
+
+  // If the key contains literal \n (as a two-character sequence), replace with actual newlines
+  if (privateKey.includes("\\n")) {
+    privateKey = privateKey.replace(/\\n/g, "\n");
+  }
+
+  // Remove surrounding quotes if present (sometimes happens with env vars)
+  if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+    privateKey = privateKey.slice(1, -1);
+  }
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      private_key: privateKey,
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
