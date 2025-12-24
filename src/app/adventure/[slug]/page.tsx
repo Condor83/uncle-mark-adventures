@@ -280,7 +280,7 @@ export default function AdventurePage() {
         {/* Footer */}
         <footer className={`text-center opacity-60 pt-8 ${isAccessible ? "text-xl" : "text-sm"}`}>
           <p>Made with ❤️ by Uncle Mark</p>
-          <p className="mt-1">Merry Christmas 2024!</p>
+          <p className="mt-1">Merry Christmas 2025!</p>
         </footer>
       </div>
 
