@@ -121,6 +121,58 @@ export const themes: Record<string, Theme> = {
     glowColor: "rgba(251, 191, 36, 0.6)",
     patternOpacity: 0.1,
   },
+  // Couple themes
+  parents: {
+    name: "Mom & Dad",
+    themeId: "parents",
+    primary: "#dc2626", // warm red
+    secondary: "#166534", // forest green
+    accent: "#fef3c7", // warm cream
+    background: "#0f0805",
+    backgroundGradient: "radial-gradient(ellipse at top, #2d1810 0%, #0f0805 50%, #050302 100%)",
+    textColor: "#fef7ed",
+    cardBg: "rgba(45, 24, 16, 0.85)",
+    welcomeMessage: "Merry Christmas, Mom & Dad!",
+    icon: "🎄",
+    fontFamily: "'Lora', serif",
+    displayFont: "'Playfair Display', serif",
+    glowColor: "rgba(220, 38, 38, 0.35)",
+    patternOpacity: 0.15,
+  },
+  scottmelissa: {
+    name: "Scott & Melissa",
+    themeId: "scottmelissa",
+    primary: "#0ea5e9", // ocean blue
+    secondary: "#0369a1", // deep blue
+    accent: "#bae6fd", // light blue
+    background: "#030a10",
+    backgroundGradient: "linear-gradient(180deg, #0c2940 0%, #030a10 60%, #010408 100%)",
+    textColor: "#e0f2fe",
+    cardBg: "rgba(12, 41, 64, 0.8)",
+    welcomeMessage: "Adventures await, Scott & Melissa!",
+    icon: "⛵",
+    fontFamily: "'Source Sans 3', sans-serif",
+    displayFont: "'Josefin Sans', sans-serif",
+    glowColor: "rgba(14, 165, 233, 0.4)",
+    patternOpacity: 0.18,
+  },
+  jennymatt: {
+    name: "Jenny & Matt",
+    themeId: "jennymatt",
+    primary: "#a78bfa", // soft violet
+    secondary: "#6d28d9", // deep purple
+    accent: "#fcd34d", // golden
+    background: "#0d0a12",
+    backgroundGradient: "radial-gradient(ellipse at bottom left, #1e1530 0%, #0d0a12 50%, #050308 100%)",
+    textColor: "#ede9fe",
+    cardBg: "rgba(30, 21, 48, 0.85)",
+    welcomeMessage: "Let's make memories, Jenny & Matt!",
+    icon: "✨",
+    fontFamily: "'Quicksand', sans-serif",
+    displayFont: "'Italiana', serif",
+    glowColor: "rgba(167, 139, 250, 0.4)",
+    patternOpacity: 0.12,
+  },
 };
 
 export function getThemeBySlug(slug: string): Theme | null {
@@ -134,6 +186,11 @@ export function getThemeBySlug(slug: string): Theme | null {
     claire: "music",
     jake: "sports",
     ezra: "accessible",
+    // Couples
+    momdad: "parents",
+    parents: "parents",
+    scottmelissa: "scottmelissa",
+    jennymatt: "jennymatt",
   };
 
   const themeKey = nameToTheme[name];

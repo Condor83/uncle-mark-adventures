@@ -475,6 +475,249 @@ export function AccessibleBackground() {
   );
 }
 
+// Parents - Warm holiday feel with snowflakes and Christmas lights
+export function ParentsBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Warm glow from top */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 opacity-20"
+        style={{
+          background: 'radial-gradient(ellipse at top, rgba(220, 38, 38, 0.4) 0%, transparent 70%)',
+        }}
+      />
+
+      {/* String lights across top */}
+      <div className="absolute top-8 left-0 right-0 flex justify-around">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="w-3 h-3 rounded-full"
+            style={{
+              backgroundColor: i % 3 === 0 ? '#dc2626' : i % 3 === 1 ? '#16a34a' : '#fbbf24',
+              boxShadow: `0 0 10px ${i % 3 === 0 ? '#dc2626' : i % 3 === 1 ? '#16a34a' : '#fbbf24'}`,
+              animation: `twinkle ${1 + Math.random()}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Snowflakes */}
+      {[...Array(25)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute text-white/20"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: '-5%',
+            fontSize: `${12 + Math.random() * 16}px`,
+            animation: `snowfall ${8 + Math.random() * 8}s linear infinite`,
+            animationDelay: `${Math.random() * 8}s`,
+          }}
+        >
+          ❄
+        </div>
+      ))}
+
+      {/* Holly decorations in corners */}
+      <div className="absolute bottom-4 left-4 text-4xl opacity-20">🎄</div>
+      <div className="absolute bottom-4 right-4 text-4xl opacity-20">🎁</div>
+
+      <style jsx>{`
+        @keyframes twinkle {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+        @keyframes snowfall {
+          0% { transform: translateY(-10%) rotate(0deg); }
+          100% { transform: translateY(110vh) rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// Scott & Melissa - Nautical/coastal with waves and sailing elements
+export function ScottMelissaBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Ocean waves */}
+      <svg className="absolute bottom-0 left-0 w-full h-48 opacity-20" preserveAspectRatio="none" viewBox="0 0 1200 120">
+        <path
+          d="M0,60 C150,100 350,0 600,60 C850,120 1050,20 1200,60 L1200,120 L0,120 Z"
+          fill="#0ea5e9"
+          style={{ animation: 'wave-move 8s ease-in-out infinite' }}
+        />
+        <path
+          d="M0,80 C200,40 400,120 600,80 C800,40 1000,100 1200,80 L1200,120 L0,120 Z"
+          fill="#0369a1"
+          style={{ animation: 'wave-move 6s ease-in-out infinite reverse' }}
+        />
+      </svg>
+
+      {/* Compass rose */}
+      <div className="absolute top-12 right-12 w-24 h-24 opacity-15">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-sky-400">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2" />
+          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+          <path d="M50,10 L55,50 L50,45 L45,50 Z" fill="currentColor" />
+          <path d="M50,90 L55,50 L50,55 L45,50 Z" fill="currentColor" opacity="0.5" />
+          <path d="M10,50 L50,45 L45,50 L50,55 Z" fill="currentColor" opacity="0.5" />
+          <path d="M90,50 L50,45 L55,50 L50,55 Z" fill="currentColor" opacity="0.5" />
+          <text x="50" y="8" textAnchor="middle" fill="currentColor" fontSize="8">N</text>
+        </svg>
+      </div>
+
+      {/* Sailing boat silhouette */}
+      <div
+        className="absolute bottom-32 opacity-10"
+        style={{
+          animation: 'sail-drift 30s linear infinite',
+        }}
+      >
+        <svg width="80" height="100" viewBox="0 0 80 100" fill="#0ea5e9">
+          <path d="M40,10 L40,70 L70,70 Q55,40 40,10" />
+          <path d="M38,20 L38,70 L15,70 Q25,45 38,20" opacity="0.7" />
+          <ellipse cx="40" cy="85" rx="35" ry="8" />
+        </svg>
+      </div>
+
+      {/* Stars (for night sailing) */}
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-1 h-1 bg-sky-300 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 40}%`,
+            opacity: Math.random() * 0.3 + 0.1,
+            animation: `twinkle ${2 + Math.random() * 2}s ease-in-out infinite`,
+          }}
+        />
+      ))}
+
+      <style jsx>{`
+        @keyframes wave-move {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(-20px); }
+        }
+        @keyframes sail-drift {
+          0% { left: -100px; }
+          100% { left: 110%; }
+        }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.1; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// Jenny & Matt - Elegant starlight and sparkles
+export function JennyMattBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Soft gradient orbs */}
+      <div
+        className="absolute top-1/4 left-1/4 w-96 h-96 opacity-10"
+        style={{
+          background: 'radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%)',
+          animation: 'float-orb 12s ease-in-out infinite',
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 opacity-10"
+        style={{
+          background: 'radial-gradient(circle, rgba(252, 211, 77, 0.3) 0%, transparent 70%)',
+          animation: 'float-orb 10s ease-in-out infinite reverse',
+        }}
+      />
+
+      {/* Sparkle stars */}
+      {[...Array(30)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `sparkle ${3 + Math.random() * 3}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 3}s`,
+          }}
+        >
+          <svg
+            width={8 + Math.random() * 12}
+            height={8 + Math.random() * 12}
+            viewBox="0 0 24 24"
+            fill="none"
+            className="text-violet-300"
+            style={{ opacity: 0.2 + Math.random() * 0.2 }}
+          >
+            <path
+              d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      ))}
+
+      {/* Elegant corner flourishes */}
+      <svg className="absolute top-8 left-8 w-32 h-32 opacity-10" viewBox="0 0 100 100">
+        <path
+          d="M10,50 Q10,10 50,10 M30,50 Q30,30 50,30"
+          fill="none"
+          stroke="#a78bfa"
+          strokeWidth="2"
+        />
+        <circle cx="50" cy="10" r="3" fill="#fcd34d" />
+      </svg>
+      <svg className="absolute bottom-8 right-8 w-32 h-32 opacity-10 rotate-180" viewBox="0 0 100 100">
+        <path
+          d="M10,50 Q10,10 50,10 M30,50 Q30,30 50,30"
+          fill="none"
+          stroke="#a78bfa"
+          strokeWidth="2"
+        />
+        <circle cx="50" cy="10" r="3" fill="#fcd34d" />
+      </svg>
+
+      {/* Gentle floating particles */}
+      {[...Array(15)].map((_, i) => (
+        <div
+          key={`particle-${i}`}
+          className="absolute w-1 h-1 bg-violet-400 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            bottom: '-2%',
+            opacity: 0.3,
+            animation: `rise-particle ${10 + Math.random() * 10}s linear infinite`,
+            animationDelay: `${Math.random() * 10}s`,
+          }}
+        />
+      ))}
+
+      <style jsx>{`
+        @keyframes float-orb {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(20px, -20px) scale(1.1); }
+        }
+        @keyframes sparkle {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.2; }
+          50% { transform: scale(1.2) rotate(180deg); opacity: 0.4; }
+        }
+        @keyframes rise-particle {
+          0% { transform: translateY(0); opacity: 0; }
+          10% { opacity: 0.3; }
+          90% { opacity: 0.3; }
+          100% { transform: translateY(-110vh); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function ThemeBackground({ themeId }: { themeId: string }) {
   switch (themeId) {
     case 'aviation': return <AviationBackground />;
@@ -484,6 +727,9 @@ export function ThemeBackground({ themeId }: { themeId: string }) {
     case 'music': return <MusicBackground />;
     case 'sports': return <SportsBackground />;
     case 'accessible': return <AccessibleBackground />;
+    case 'parents': return <ParentsBackground />;
+    case 'scottmelissa': return <ScottMelissaBackground />;
+    case 'jennymatt': return <JennyMattBackground />;
     default: return null;
   }
 }
