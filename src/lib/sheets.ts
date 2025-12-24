@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { Person, Activity, Redemption } from "@/types";
+import { Person, Activity, Redemption, Photo, AdventureRequest } from "@/types";
 
 // Initialize the Google Sheets API client
 function getSheets() {
@@ -87,6 +87,35 @@ export async function getActivitiesForPerson(personName: string): Promise<Activi
   });
 }
 
+export async function getPhotosForPerson(personName: string): Promise<Photo[]> {
+  const sheets = getSheets();
+
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Photos!A2:D",
+    });
+
+    const rows = response.data.values;
+    if (!rows) return [];
+
+    const nameLower = personName.toLowerCase();
+
+    return rows
+      .filter((row) => row[1]?.toLowerCase() === nameLower)
+      .map((row) => ({
+        id: row[0],
+        person: row[1],
+        url: row[2],
+        caption: row[3] || "",
+      }));
+  } catch (error) {
+    // Photos sheet might not exist yet, that's okay
+    console.log("Photos sheet not found or empty");
+    return [];
+  }
+}
+
 export async function getRedemptionsByPerson(personId: string): Promise<Redemption[]> {
   const sheets = getSheets();
 
@@ -169,4 +198,59 @@ export async function redeemActivity(
   });
 
   return { success: true, newBalance };
+}
+
+export async function submitAdventureRequest(
+  personId: string,
+  personName: string,
+  request: string
+): Promise<{ success: boolean; error?: string }> {
+  const sheets = getSheets();
+
+  try {
+    const requestId = `REQ${Date.now()}`;
+    const submittedAt = new Date().toISOString();
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Requests!A:F",
+      valueInputOption: "RAW",
+      requestBody: {
+        values: [[requestId, personId, personName, request, submittedAt, "pending"]],
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error submitting request:", error);
+    return { success: false, error: "Failed to submit request" };
+  }
+}
+
+export async function getRequestsByPerson(personId: string): Promise<AdventureRequest[]> {
+  const sheets = getSheets();
+
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Requests!A2:F",
+    });
+
+    const rows = response.data.values;
+    if (!rows) return [];
+
+    return rows
+      .filter((row) => row[1] === personId)
+      .map((row) => ({
+        id: row[0],
+        personId: row[1],
+        personName: row[2],
+        request: row[3],
+        submittedAt: row[4],
+        status: row[5] as AdventureRequest["status"],
+      }));
+  } catch (error) {
+    console.log("Requests sheet not found or empty");
+    return [];
+  }
 }

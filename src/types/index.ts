@@ -23,6 +23,22 @@ export interface Redemption {
   notes?: string;
 }
 
+export interface Photo {
+  id: string;
+  person: string;
+  url: string;
+  caption?: string;
+}
+
+export interface AdventureRequest {
+  id: string;
+  personId: string;
+  personName: string;
+  request: string;
+  submittedAt: string;
+  status: "pending" | "approved" | "completed";
+}
+
 export interface Theme {
   name: string;
   primary: string;

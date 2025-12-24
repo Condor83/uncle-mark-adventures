@@ -2,11 +2,13 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
-import { Person, Activity, Theme, Redemption } from "@/types";
+import { Person, Activity, Theme, Redemption, Photo } from "@/types";
 import BalanceDisplay from "@/components/BalanceDisplay";
 import ActivityCard from "@/components/ActivityCard";
 import RedemptionConfirm from "@/components/RedemptionConfirm";
 import { ThemeBackground } from "@/components/ThemeBackgrounds";
+import PhotoGallery from "@/components/PhotoGallery";
+import AdventureRequestForm from "@/components/AdventureRequestForm";
 import { useAudioFeedback } from "@/components/accessible/AudioFeedback";
 
 interface PageData {
@@ -21,6 +23,7 @@ export default function AdventurePage() {
 
   const [pageData, setPageData] = useState<PageData | null>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
@@ -53,8 +56,13 @@ export default function AdventurePage() {
         const activitiesRes = await fetch(`/api/activities?person=${encodeURIComponent(personData.person.name)}`);
         const activitiesData = await activitiesRes.json();
 
+        // Fetch photos for this person
+        const photosRes = await fetch(`/api/photos?person=${encodeURIComponent(personData.person.name)}`);
+        const photosData = await photosRes.json();
+
         setPageData(personData);
         setActivities(activitiesData.activities || []);
+        setPhotos(photosData.photos || []);
       } catch (err) {
         setError("Something went wrong. Please try again!");
         console.error(err);
@@ -336,6 +344,24 @@ export default function AdventurePage() {
               </div>
             )}
           </section>
+
+          {/* Photo Gallery */}
+          {photos.length > 0 && (
+            <PhotoGallery
+              photos={photos}
+              theme={theme}
+              personName={person.name}
+              isAccessible={isAccessible}
+            />
+          )}
+
+          {/* Adventure Request Form */}
+          <AdventureRequestForm
+            personId={person.id}
+            personName={person.name}
+            theme={theme}
+            isAccessible={isAccessible}
+          />
 
           {/* Footer */}
           <footer
