@@ -78,7 +78,7 @@ Add these columns in Row 1 (this will auto-populate when kids redeem):
    ```bash
    git add .
    git commit -m "Initial commit"
-   gh repo create uncle-mark-adventures --public --push
+   gh repo create uncle-mark-adventures --public --source=. --push
    ```
 
 2. Go to [Vercel](https://vercel.com) and sign in with GitHub
