@@ -74,10 +74,14 @@ export default function AdventurePage() {
     fetchData();
   }, [slug]);
 
-  // Announce welcome for accessible users
+  // Announce welcome and activities for accessible users
   useEffect(() => {
     if (isAccessible && pageData && activities.length > 0 && audioEnabled) {
       audio.announceWelcome(pageData.person.name, pageData.person.balance, activities.length);
+      // Announce all activities after the welcome (with a small delay)
+      setTimeout(() => {
+        audio.announceAllActivities(activities, (cost) => pageData.person.balance >= cost);
+      }, 500);
     }
   }, [isAccessible, pageData, activities, audioEnabled, audio]);
 

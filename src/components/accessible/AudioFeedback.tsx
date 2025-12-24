@@ -1,34 +1,135 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Activity } from "@/types";
 
 interface AudioFeedbackProps {
   onReady?: () => void;
 }
 
+// Get the best available voice - prefer natural/premium voices
+function getBestVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
+  if (voices.length === 0) return null;
+
+  // Priority list of preferred voices (natural-sounding ones)
+  const preferredVoices = [
+    // macOS premium voices
+    "Samantha",
+    "Alex",
+    "Evan",
+    "Tom",
+    // iOS/macOS enhanced
+    "Samantha (Enhanced)",
+    "Daniel",
+    // Google voices (Chrome)
+    "Google US English",
+    "Google UK English Female",
+    "Google UK English Male",
+    // Microsoft voices (Edge/Windows)
+    "Microsoft Zira",
+    "Microsoft David",
+    "Microsoft Mark",
+    // Other natural voices
+    "Karen",
+    "Moira",
+    "Tessa",
+  ];
+
+  // Try to find a preferred voice
+  for (const preferred of preferredVoices) {
+    const voice = voices.find(
+      (v) => v.name.includes(preferred) && v.lang.startsWith("en")
+    );
+    if (voice) return voice;
+  }
+
+  // Fallback: find any English voice that's marked as local (usually better quality)
+  const localEnglish = voices.find((v) => v.lang.startsWith("en") && v.localService);
+  if (localEnglish) return localEnglish;
+
+  // Final fallback: any English voice
+  const anyEnglish = voices.find((v) => v.lang.startsWith("en"));
+  return anyEnglish || voices[0];
+}
+
 export function useAudioFeedback() {
   const synthRef = useRef<SpeechSynthesis | null>(null);
+  const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const speakingQueueRef = useRef<string[]>([]);
+  const isSpeakingRef = useRef(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.speechSynthesis) {
-      synthRef.current = window.speechSynthesis;
-    }
+    if (typeof window === "undefined" || !window.speechSynthesis) return;
+
+    synthRef.current = window.speechSynthesis;
+
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      const best = getBestVoice(voices);
+      setVoice(best);
+    };
+
+    // Voices may load async
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+
+    return () => {
+      window.speechSynthesis.onvoiceschanged = null;
+    };
   }, []);
+
+  const processQueue = useCallback(() => {
+    if (!synthRef.current || isSpeakingRef.current || speakingQueueRef.current.length === 0) {
+      return;
+    }
+
+    const text = speakingQueueRef.current.shift();
+    if (!text) return;
+
+    isSpeakingRef.current = true;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
+    utterance.volume = 1;
+
+    if (voice) {
+      utterance.voice = voice;
+    }
+
+    utterance.onend = () => {
+      isSpeakingRef.current = false;
+      // Small pause between utterances
+      setTimeout(() => processQueue(), 300);
+    };
+
+    utterance.onerror = () => {
+      isSpeakingRef.current = false;
+      processQueue();
+    };
+
+    synthRef.current.speak(utterance);
+  }, [voice]);
 
   const speak = useCallback((text: string, priority: boolean = false) => {
     if (!synthRef.current) return;
 
     if (priority) {
       synthRef.current.cancel();
+      speakingQueueRef.current = [];
+      isSpeakingRef.current = false;
     }
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    utterance.volume = 1;
+    speakingQueueRef.current.push(text);
+    processQueue();
+  }, [processQueue]);
 
-    synthRef.current.speak(utterance);
-  }, []);
+  const speakSequence = useCallback((texts: string[]) => {
+    texts.forEach((text) => {
+      speakingQueueRef.current.push(text);
+    });
+    processQueue();
+  }, [processQueue]);
 
   const playSound = useCallback((type: "click" | "success" | "error" | "balance") => {
     // Create simple audio feedback using Web Audio API
@@ -104,16 +205,58 @@ export function useAudioFeedback() {
   }, [speak, playSound]);
 
   const announceWelcome = useCallback((name: string, balance: number, activityCount: number) => {
-    speak(`Hey ${name}! Welcome to your adventure bucks page! You have ${balance} adventure bucks to spend on ${activityCount} awesome activities with Uncle Mark. Scroll down to hear about each adventure!`);
+    speak(`Hey ${name}! Welcome to your adventure bucks page! You have ${balance} adventure bucks to spend on ${activityCount} awesome activities with Uncle Mark.`);
   }, [speak]);
+
+  const announceAllActivities = useCallback((activities: Activity[], canAffordCheck: (cost: number) => boolean) => {
+    if (activities.length === 0) {
+      speak("No adventures are available right now, but check back soon!");
+      return;
+    }
+
+    const messages: string[] = [
+      `Here are your ${activities.length} available adventures:`,
+    ];
+
+    activities.forEach((activity, index) => {
+      const canAfford = canAffordCheck(activity.cost);
+      const affordText = canAfford
+        ? "You can afford this one!"
+        : "You'll need more adventure bucks for this.";
+
+      messages.push(
+        `Adventure ${index + 1}: ${activity.name}. ` +
+        `It costs ${activity.cost} adventure bucks. ` +
+        `${activity.description} ` +
+        `${affordText}`
+      );
+    });
+
+    messages.push(
+      "To redeem an adventure, tap on it and confirm. Uncle Mark will get notified and reach out to plan your adventure together!"
+    );
+
+    speakSequence(messages);
+  }, [speak, speakSequence]);
+
+  const stopSpeaking = useCallback(() => {
+    if (synthRef.current) {
+      synthRef.current.cancel();
+      speakingQueueRef.current = [];
+      isSpeakingRef.current = false;
+    }
+  }, []);
 
   return {
     speak,
+    speakSequence,
     playSound,
     announceBalance,
     announceActivity,
     announceRedemption,
     announceWelcome,
+    announceAllActivities,
+    stopSpeaking,
   };
 }
 
