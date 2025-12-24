@@ -102,7 +102,11 @@ export async function getPhotosForPerson(personName: string): Promise<Photo[]> {
     const nameLower = personName.toLowerCase();
 
     return rows
-      .filter((row) => row[1]?.toLowerCase() === nameLower)
+      .filter((row) => {
+        // Support comma-separated names (e.g., "Riley, Ella, Abby")
+        const names = row[1]?.split(",").map((n: string) => n.trim().toLowerCase()) || [];
+        return names.includes(nameLower);
+      })
       .map((row) => ({
         id: row[0],
         person: row[1],
