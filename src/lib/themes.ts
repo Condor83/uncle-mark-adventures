@@ -158,7 +158,7 @@ export const themes: Record<string, Theme> = {
     backgroundGradient: "linear-gradient(180deg, #0c2940 0%, #030a10 60%, #010408 100%)",
     textColor: "#e0f2fe",
     cardBg: "rgba(12, 41, 64, 0.8)",
-    welcomeMessage: "Welcome home, Scott & Melissa!",
+    welcomeMessage: "Welcome home, Scott, Melissa and Linda!",
     icon: "⛵",
     fontFamily: "'Source Sans 3', sans-serif",
     displayFont: "'Josefin Sans', sans-serif",
