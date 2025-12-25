@@ -148,8 +148,8 @@ export const themes: Record<string, Theme> = {
     patternOpacity: 0.15,
   },
   scottmelissa: {
-    name: "Scott & Melissa",
-    personalMessage: "Scott and Meliss, I'm glad you are back! Thanks for always being there for me. I'm excited for all that awaits us in the next year!",
+    name: "Scott, Melissa & Linda",
+    personalMessage: "Scott, Meliss, and Linda I'm glad you are back! Thanks for always being there for me. I'm excited for all that awaits us in the next year!",
     themeId: "scottmelissa",
     primary: "#0ea5e9", // ocean blue
     secondary: "#0369a1", // deep blue
